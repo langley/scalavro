@@ -5,6 +5,8 @@ import com.gensler.scalavro.types.primitive.AvroNull
 import com.gensler.scalavro.error.{ AvroSerializationException, AvroDeserializationException }
 
 import org.apache.avro.generic.GenericData
+import org.apache.avro.io.{ EncoderFactory, DecoderFactory }
+import org.apache.avro.Schema
 
 import scala.util.{ Try, Success, Failure }
 import scala.reflect.runtime.universe.TypeTag
@@ -24,7 +26,11 @@ trait AvroNullIO extends AvroTypeIO[Unit] {
 
   def read(stream: InputStream) = Success(())
 
-  def writeJson[U <: Unit: TypeTag](value: U, stream: OutputStream) = ???
+  def writeJson[U <: Unit: TypeTag](value: U, stream: OutputStream) = {
+    val encoder = EncoderFactory.get.jsonEncoder(Schema.create(Schema.Type.NULL), stream)
+    encoder.writeNull
+    encoder.flush
+  }
 
   def readJson(stream: InputStream) = ???
 

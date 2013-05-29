@@ -5,6 +5,7 @@ import com.gensler.scalavro.types.primitive.AvroFloat
 import com.gensler.scalavro.error.{ AvroSerializationException, AvroDeserializationException }
 
 import org.apache.avro.io.{ EncoderFactory, DecoderFactory }
+import org.apache.avro.Schema
 
 import scala.util.{ Try, Success, Failure }
 import scala.reflect.runtime.universe.TypeTag
@@ -29,7 +30,11 @@ trait AvroFloatIO extends AvroTypeIO[Float] {
     decoder.readFloat
   }
 
-  def writeJson[F <: Float: TypeTag](value: F, stream: OutputStream) = ???
+  def writeJson[F <: Float: TypeTag](value: F, stream: OutputStream) = {
+    val encoder = EncoderFactory.get.jsonEncoder(Schema.create(Schema.Type.FLOAT), stream)
+    encoder writeFloat value
+    encoder.flush
+  }
 
   def readJson(stream: InputStream) = ???
 

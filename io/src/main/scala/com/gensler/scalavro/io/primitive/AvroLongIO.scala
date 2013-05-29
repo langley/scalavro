@@ -5,6 +5,7 @@ import com.gensler.scalavro.types.primitive.AvroLong
 import com.gensler.scalavro.error.{ AvroSerializationException, AvroDeserializationException }
 
 import org.apache.avro.io.{ EncoderFactory, DecoderFactory }
+import org.apache.avro.Schema
 
 import scala.util.{ Try, Success, Failure }
 import scala.reflect.runtime.universe.TypeTag
@@ -29,7 +30,11 @@ trait AvroLongIO extends AvroTypeIO[Long] {
     decoder.readLong
   }
 
-  def writeJson[L <: Long: TypeTag](value: L, stream: OutputStream) = ???
+  def writeJson[L <: Long: TypeTag](value: L, stream: OutputStream) = {
+    val encoder = EncoderFactory.get.jsonEncoder(Schema.create(Schema.Type.LONG), stream)
+    encoder writeLong value
+    encoder.flush
+  }
 
   def readJson(stream: InputStream) = ???
 

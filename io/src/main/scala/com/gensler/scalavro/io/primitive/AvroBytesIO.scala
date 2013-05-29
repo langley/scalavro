@@ -5,6 +5,7 @@ import com.gensler.scalavro.types.primitive.AvroBytes
 import com.gensler.scalavro.error.{ AvroSerializationException, AvroDeserializationException }
 
 import org.apache.avro.io.{ EncoderFactory, DecoderFactory }
+import org.apache.avro.Schema
 
 import scala.util.{ Try, Success, Failure }
 import scala.reflect.runtime.universe.TypeTag
@@ -37,7 +38,11 @@ trait AvroBytesIO extends AvroTypeIO[Seq[Byte]] {
     catch { case cause: Throwable => throw new AvroDeserializationException[Seq[Byte]](cause) }
   }
 
-  def writeJson[B <: Seq[Byte]: TypeTag](value: B, stream: OutputStream) = ???
+  def writeJson[B <: Seq[Byte]: TypeTag](value: B, stream: OutputStream) = {
+    val encoder = EncoderFactory.get.jsonEncoder(Schema.create(Schema.Type.BYTES), stream)
+    encoder writeBytes value.toArray
+    encoder.flush
+  }
 
   def readJson(stream: InputStream) = ???
 

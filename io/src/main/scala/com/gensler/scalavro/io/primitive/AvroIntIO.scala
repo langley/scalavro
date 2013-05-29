@@ -5,6 +5,7 @@ import com.gensler.scalavro.types.primitive.AvroInt
 import com.gensler.scalavro.error.{ AvroSerializationException, AvroDeserializationException }
 
 import org.apache.avro.io.{ EncoderFactory, DecoderFactory }
+import org.apache.avro.Schema
 
 import scala.util.{ Try, Success, Failure }
 import scala.reflect.runtime.universe.TypeTag
@@ -29,7 +30,11 @@ trait AvroIntIO extends AvroTypeIO[Int] {
     decoder.readInt
   }
 
-  def writeJson[I <: Int: TypeTag](value: I, stream: OutputStream) = ???
+  def writeJson[I <: Int: TypeTag](value: I, stream: OutputStream) = {
+    val encoder = EncoderFactory.get.jsonEncoder(Schema.create(Schema.Type.INT), stream)
+    encoder writeInt value
+    encoder.flush
+  }
 
   def readJson(stream: InputStream) = ???
 
