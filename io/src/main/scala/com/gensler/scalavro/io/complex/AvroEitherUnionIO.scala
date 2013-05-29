@@ -51,4 +51,9 @@ private[scalavro] case class AvroEitherUnionIO[U <: Union.not[_]: TypeTag, T <: 
     else if (index == 1) Right(rightAvroType.read(stream).get.asInstanceOf[B])
     else throw new AvroDeserializationException[T]
   }
+
+  def writeJson[X <: T: TypeTag](obj: X, stream: OutputStream) = ???
+
+  def readJson(stream: InputStream) = ???
+
 }

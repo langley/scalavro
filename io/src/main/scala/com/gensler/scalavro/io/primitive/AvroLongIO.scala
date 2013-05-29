@@ -29,4 +29,8 @@ trait AvroLongIO extends AvroTypeIO[Long] {
     decoder.readLong
   }
 
+  def writeJson[L <: Long: TypeTag](value: L, stream: OutputStream) = ???
+
+  def readJson(stream: InputStream) = ???
+
 }

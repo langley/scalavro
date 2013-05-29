@@ -74,4 +74,8 @@ case class AvroRecordIO[T](avroType: AvroRecord[T]) extends AvroTypeIO[T]()(avro
     ReflectionHelpers.instantiateCaseClassWith(args)(avroType.tag).get
   }
 
+  def writeJson[R <: T: TypeTag](obj: R, stream: OutputStream) = ???
+
+  def readJson(stream: InputStream) = ???
+
 }

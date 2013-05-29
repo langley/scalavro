@@ -56,4 +56,8 @@ case class AvroEnumIO[E <: Enumeration](avroType: AvroEnum[E]) extends AvroTypeI
     }
   }
 
+  def writeJson[T <: E#Value: TypeTag](obj: T, stream: OutputStream) = ???
+
+  def readJson(stream: InputStream) = ???
+
 }

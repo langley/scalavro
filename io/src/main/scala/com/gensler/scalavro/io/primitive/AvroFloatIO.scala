@@ -28,4 +28,9 @@ trait AvroFloatIO extends AvroTypeIO[Float] {
     val decoder = DecoderFactory.get.directBinaryDecoder(stream, null)
     decoder.readFloat
   }
+
+  def writeJson[F <: Float: TypeTag](value: F, stream: OutputStream) = ???
+
+  def readJson(stream: InputStream) = ???
+
 }

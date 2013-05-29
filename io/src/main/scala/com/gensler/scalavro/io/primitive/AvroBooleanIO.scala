@@ -35,4 +35,8 @@ trait AvroBooleanIO extends AvroTypeIO[Boolean] {
     }
   }
 
+  def writeJson[B <: Boolean: TypeTag](value: B, stream: OutputStream) = ???
+
+  def readJson(stream: InputStream): Try[Boolean] = ???
+
 }

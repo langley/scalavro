@@ -44,4 +44,8 @@ private[scalavro] case class AvroBareUnionIO[U <: Union.not[_]: TypeTag, T: Type
     memberType.read(stream).get
   }
 
+  def writeJson[X <: T: TypeTag](obj: X, stream: OutputStream) = ???
+
+  def readJson(stream: InputStream) = ???
+
 }

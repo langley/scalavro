@@ -44,4 +44,8 @@ case class AvroJEnumIO[E](avroType: AvroJEnum[E]) extends AvroTypeIO[E]()(avroTy
     }
   }
 
+  def writeJson[T <: E: TypeTag](obj: T, stream: OutputStream) = ???
+
+  def readJson(stream: InputStream) = ???
+
 }

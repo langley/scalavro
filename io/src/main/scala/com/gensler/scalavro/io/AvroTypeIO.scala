@@ -47,19 +47,15 @@ abstract class AvroTypeIO[T: TypeTag] {
     * Writes a JSON serialization of the supplied object.  Throws an
     * AvroSerializationException if writing is unsuccessful.
     */
-  /*
   @throws[AvroSerializationException[_]]
-  def writeJson[G <: T : TypeTag](obj: G, stream: OutputStream)
-*/
+  def writeJson[G <: T: TypeTag](obj: G, stream: OutputStream)
 
   /**
     * Attempts to create an object of type T by reading the required data from
     * the supplied JSON stream.
     */
-  /*
   @throws[AvroDeserializationException[_]]
   def readJson(stream: InputStream): Try[T]
-*/
 
 }
 

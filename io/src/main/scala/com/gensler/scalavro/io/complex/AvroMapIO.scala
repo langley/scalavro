@@ -56,4 +56,8 @@ case class AvroMapIO[T](avroType: AvroMap[T]) extends AvroTypeIO[Map[String, T]]
     items.toMap
   }
 
+  def writeJson[M <: Map[String, T]: TypeTag](obj: M, stream: OutputStream) = ???
+
+  def readJson(stream: InputStream) = ???
+
 }

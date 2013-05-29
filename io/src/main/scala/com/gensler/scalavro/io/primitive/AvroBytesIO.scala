@@ -37,4 +37,8 @@ trait AvroBytesIO extends AvroTypeIO[Seq[Byte]] {
     catch { case cause: Throwable => throw new AvroDeserializationException[Seq[Byte]](cause) }
   }
 
+  def writeJson[B <: Seq[Byte]: TypeTag](value: B, stream: OutputStream) = ???
+
+  def readJson(stream: InputStream) = ???
+
 }

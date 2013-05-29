@@ -24,4 +24,8 @@ trait AvroNullIO extends AvroTypeIO[Unit] {
 
   def read(stream: InputStream) = Success(())
 
+  def writeJson[U <: Unit: TypeTag](value: U, stream: OutputStream) = ???
+
+  def readJson(stream: InputStream) = ???
+
 }

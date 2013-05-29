@@ -28,4 +28,9 @@ trait AvroDoubleIO extends AvroTypeIO[Double] {
     val decoder = DecoderFactory.get.directBinaryDecoder(stream, null)
     decoder.readDouble
   }
+
+  def writeJson[D <: Double: TypeTag](value: D, stream: OutputStream) = ???
+
+  def readJson(stream: InputStream) = ???
+
 }

@@ -16,8 +16,8 @@ class AvroProtocolSpec extends AvroSpec {
     val handshakeRequestType = AvroType[HandshakeRequest]
     val handshakeResponseType = AvroType[HandshakeResponse]
 
-    // prettyPrint(handshakeRequestType.selfContainedSchema())
-    // prettyPrint(handshakeResponseType.selfContainedSchema())
+    prettyPrint(handshakeRequestType.selfContainedSchema())
+    prettyPrint(handshakeResponseType.selfContainedSchema())
   }
 
   it should "construct protocol definitions" in {

@@ -59,4 +59,8 @@ case class AvroSetIO[T](avroType: AvroSet[T]) extends AvroTypeIO[Set[T]]()(avroT
     items.toSet
   }
 
+  def writeJson[G <: Set[T]: TypeTag](obj: G, stream: OutputStream) = ???
+
+  def readJson(stream: InputStream) = ???
+
 }

@@ -41,4 +41,8 @@ case class AvroFixedIO[T <: FixedData: TypeTag](avroType: AvroFixed[T]) extends 
     catch { case cause: Throwable => throw new AvroDeserializationException[Seq[Byte]](cause) }
   }
 
+  def writeJson[F <: T: TypeTag](obj: F, stream: OutputStream) = ???
+
+  def readJson(stream: InputStream) = ???
+
 }

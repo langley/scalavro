@@ -59,4 +59,8 @@ case class AvroArrayIO[T](avroType: AvroArray[T]) extends AvroTypeIO[Seq[T]]()(a
     items.toSeq
   }
 
+  def writeJson[G <: Seq[T]: TypeTag](obj: G, stream: OutputStream) = ???
+
+  def readJson(stream: InputStream) = ???
+
 }

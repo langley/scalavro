@@ -29,4 +29,8 @@ trait AvroIntIO extends AvroTypeIO[Int] {
     decoder.readInt
   }
 
+  def writeJson[I <: Int: TypeTag](value: I, stream: OutputStream) = ???
+
+  def readJson(stream: InputStream) = ???
+
 }
