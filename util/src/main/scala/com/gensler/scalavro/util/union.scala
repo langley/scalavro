@@ -12,10 +12,11 @@ import scala.reflect.runtime.universe._
   *
   * Usage:
   *
+  * @example
   * {{{
   *   import com.gensler.scalavro.util.Union._
   *
-  *   type UnionISB = union [Int] #or [String] #or [Boolean] #apply
+  *   type UnionISB = union [Int] #or [String] #or [Boolean]
   *
   *   def unionPrint[T : prove [UnionISB] #containsType](t: T) =
   *     t match {
